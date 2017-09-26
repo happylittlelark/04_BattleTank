@@ -5,7 +5,7 @@
 #include "TankTurret.h"
 #include "TankAimingComponent.h"
 #include "Projectile.h"
-
+#include "TankMovementComponent.h"
 
 
 // Sets default values
@@ -15,6 +15,7 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
 	TankAimComponent = CreateDefaultSubobject<UTankAimingComponent>(FName("AimingComponent"));
+	//TankMoveComponent = CreateDefaultSubobject<UTankMovementComponent>(FName("MovementComponent"));
 
 
 }
