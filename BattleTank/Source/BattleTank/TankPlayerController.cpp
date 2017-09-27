@@ -15,7 +15,6 @@ void ATankPlayerController::BeginPlay()
 	else
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Controlled tank: %s"), *ControlledTank->GetName())
-
 	}
 
 }
@@ -60,10 +59,8 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& OutHitLocation) cons
 	if (GetLookDirection(ScreenLocation, WorldDirection))
 	{
 		return GetLookVectorHitLocation(OutHitLocation, WorldDirection);
-		//UE_LOG(LogTemp, Warning, TEXT("LookVectorHitLocation: %s"), *OutHitLocation.ToString())
 	}
 
-	//OutHitLocation = ScreenLocation;
 	return false;
 
 }

@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-//#include "Tank.h"
 #include "Runtime/Engine/Classes/GameFramework/Actor.h"
 #include "AIController.h"
 #include "TankAIController.generated.h"
@@ -14,6 +13,9 @@ UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere)
+	float AcceptanceRadius = 3000.f;
 
 private:
 	ATank* ControlledAITank = nullptr;
@@ -21,5 +23,7 @@ private:
 	
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+
+
 	
 };

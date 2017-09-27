@@ -10,7 +10,6 @@ void ATankAIController::BeginPlay()
 	ControlledAITank = Cast<ATank>(GetPawn());
 	if (ControlledAITank)
 	{
-		//UE_LOG(LogTemp, Warning, TEXT("Controlled AI tank: %s"), *ControlledAITank->GetName())
 	}
 	else
 	{
@@ -34,9 +33,13 @@ void ATankAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (ControlledAITank)
 	{
+		MoveToActor(PlayerTank, AcceptanceRadius);
+
 		ControlledAITank->AimAt(PlayerTank->GetActorLocation());
 
-		//TODO limit fire rate
 		ControlledAITank->Fire();
 	}
 }
+
+
+

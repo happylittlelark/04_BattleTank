@@ -17,8 +17,6 @@ void UTankMovementComponent::Init(UTankTrack* LeftTrackToSet, UTankTrack* RightT
 
 void UTankMovementComponent::IntendMoveForward(float Throw)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Intend move forward called with %f"), Throw)
-		//TODO test task list
 	if (LeftTrack && RightTrack)
 	{
 		LeftTrack->SetThrottle(Throw);
@@ -34,6 +32,22 @@ void UTankMovementComponent::IntendTurnRight(float Throw)
 		RightTrack->SetThrottle(Throw);
 	}
 	
+}
+
+void UTankMovementComponent::RequestDirectMove(const FVector& MoveVelocity, bool bForceMaxSpeed)
+{
+	FVector TankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	FVector AIForwardIntention = MoveVelocity.GetSafeNormal();
+
+	float ForwardThrow = FVector::DotProduct(TankForward, AIForwardIntention);
+
+	IntendMoveForward(ForwardThrow);
+
+	FVector IntendTurn = FVector::CrossProduct(AIForwardIntention, TankForward);
+
+	IntendTurnRight(IntendTurn.Z);
+
+	//UE_LOG(LogTemp, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityString)
 }
 
 
